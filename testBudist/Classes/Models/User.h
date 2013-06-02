@@ -2,7 +2,7 @@
 //  User.h
 //  iSeller
 //
-//  Created by Paul Semionov on 27.12.12.
+//  Created by Chingis Gomboev on 27.12.12.
 //  Copyright (c) 2012 CloudTeam. All rights reserved.
 //
 //
@@ -15,16 +15,16 @@
 @property(nonatomic, strong) NSNumber* identifier;
 @property(nonatomic, strong) NSString* name;
 @property(nonatomic, strong) NSString* token;
-@property(nonatomic, strong) NSMutableArray* devices;
-@property(nonatomic, strong) NSString* deviceToken;
-@property(nonatomic, strong) NSString* skype;
+@property(nonatomic, strong) NSNumber* sex;
+@property(nonatomic, strong) NSString* birthday;
+@property(nonatomic, strong) NSString* age;
 @property(nonatomic, strong) NSString* phone;
 @property(nonatomic, strong) NSString* email;
-@property(nonatomic, strong) NSString* contactEmail;
 @property(nonatomic, strong) NSString* avatar;
-@property(nonatomic, strong) NSString* messagesCount;
-
+@property(nonatomic, strong) NSString* countryPrefix;
+@property(nonatomic, strong) NSString* region;
 
 @property (nonatomic, assign) BOOL isAuthorized;
 
+-(NSString*)avatar;
 @end

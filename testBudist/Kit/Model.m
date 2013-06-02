@@ -2,7 +2,7 @@
 //  Model.m
 //  iSeller
 //
-//  Created by Paul Semionov on 27.12.12.
+//  Created by Chingis Gomboev on 27.12.12.
 //  Copyright (c) 2012 CloudTeam. All rights reserved.
 //
 // Вся структура родительского класса должна быть сохранена в последующих сабклассах.
@@ -18,13 +18,7 @@
 
 #import "ErrorHandler.h"
 
-#import <GAI.h>
-
-#import "NSDate+Extensions.h"
-
 @implementation Model
-
-@synthesize delegate;
 
 #pragma mark Core
 #pragma mark Model archiving methods
@@ -189,12 +183,20 @@
             NSLog(@"Download progress: %.2f%%", progress * 100);
             
         }
-        
+        if(progressBlock) {
+            
+            progressBlock(progress);
+            
+        }
     }];
     
     [httpOperation setCompletionBlockWithSuccess:^(HTTPRequestOperation *operation, id responseObject) {
                 
         id object = [operation.responseData objectFromJSONData];
+        
+        //типа в респонсе мог быть файл, который по джесону обнуляется
+        if(!object)
+            object = operation.responseData;
         
         NSLog(@"\n\n\nSucceeded request \"%@\" andMethod %@", operation.request.URL.path,operation.request.HTTPMethod);
         NSLog(@"Succeeded with status code: %i\n\n\n", [operation.response statusCode]);
@@ -350,10 +352,6 @@
     
     NSLog(@"Error: %@", [error localizedDescription]);
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker sendException:NO withDescription:@"(%@)Error: %@ while performing request with url: %@", [[NSDate date] dateToUTCWithFormat:nil], [error localizedDescription], [NSString stringWithFormat:@"%@%@", operation.request.URL.host, operation.request.URL.path]];
-    
     [[ErrorHandler sharedHandler] handleError:error];
     
 }
@@ -436,5 +434,8 @@
     }
     return propertyMap;
 }
+
+//для скачивания файла
+
 
 @end

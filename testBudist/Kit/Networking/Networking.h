@@ -2,7 +2,7 @@
 //  Networking.h
 //  iSeller
 //
-//  Created by Paul Semionov on 15.03.13.
+//  Created by Paul Semenov on 15.03.13.
 //  Copyright (c) 2013 CloudTeam. All rights reserved.
 //
 

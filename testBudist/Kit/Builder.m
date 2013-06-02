@@ -2,17 +2,13 @@
 //  Builder.m
 //  iSeller
 //
-//  Created by Paul Semionov on 10.01.13.
+//  Created by Chingis Gomboev on 10.01.13.
 //  Copyright (c) 2013 CloudTeam. All rights reserved.
 //
 
 #import "Builder.h"
 
 #import <JSONKit.h>
-
-#import <GAI.h>
-
-#import "NSDate+Extensions.h"
 
 #import "NSDictionary+Extensions.h"
 
@@ -90,25 +86,31 @@ static NSArray *_garbageValues = nil;
 {
     
     KIMutableURLRequest *request;
-    NSString *rootKey = @"";
-    if(parameters.allKeys.count == 1 && [[parameters valueForKey:[[parameters allKeys] lastObject]] isKindOfClass:[NSDictionary class]]) {
-        rootKey = [[parameters allKeys] lastObject];       
-        parameters = [self validate:parameters[rootKey] andRequiredFields:_requiredFields error:error];
-        if(!parameters) 
-            return nil;
-        else if (parameters.allKeys.count==0)
-            parameters = nil;
-        else
-            parameters = @{rootKey : parameters};
-    }
-    else
-    {
-        parameters = [self validate:parameters andRequiredFields:_requiredFields error:error];
-        if(!parameters)
-            return nil;
-        if(parameters.allKeys.count==0)
-            parameters = nil;
-    }
+//    NSString *rootKey = @"";
+//    if(parameters.allKeys.count == 1 && [[parameters valueForKey:[[parameters allKeys] lastObject]] isKindOfClass:[NSDictionary class]]) {
+//        rootKey = [[parameters allKeys] lastObject];       
+//        parameters = [self validate:parameters[rootKey] andRequiredFields:_requiredFields error:error];
+//        if(!parameters) 
+//            return nil;
+//        else if (parameters.allKeys.count==0)
+//            parameters = nil;
+//        else
+//            parameters = @{rootKey : parameters};
+//    }
+//    else
+//    {
+//        parameters = [self validate:parameters andRequiredFields:_requiredFields error:error];
+//        if(!parameters)
+//            return nil;
+//        if(parameters.allKeys.count==0)
+//            parameters = nil;
+//    }
+    
+    parameters = [self validate:parameters andRequiredFields:_requiredFields error:error];
+    if(!parameters)
+        return nil;
+    if(parameters.allKeys.count==0)
+        parameters = nil;
     
     if(![self isMultipart])
         request = [[HTTPClient sharedClient] requestWithMethod:_method path:_path parameters:parameters];
@@ -177,11 +179,7 @@ static NSArray *_garbageValues = nil;
         if(![[_parameters allKeys] containsObject:[_requiredFields objectAtIndex:i]]) {
             
             NSLog(@"Required field is missing: %@", [_requiredFields objectAtIndex:i]);
-                        
-            id tracker = [[GAI sharedInstance] defaultTracker];
             
-            [tracker sendException:NO withDescription:[NSString stringWithFormat:@"(%@)Attempting to request and missing required field: %@", [[NSDate date] dateToUTCWithFormat:nil], [_requiredFields objectAtIndex:i]]];
-                        
             [unprocessedFields addObject:NSLocalizedString(_requiredFields[i],nil)];
             //_parameters = nil;
             //break;

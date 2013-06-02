@@ -2,7 +2,7 @@
 //  User.m
 //  iSeller
 //
-//  Created by Paul Semionov on 27.12.12.
+//  Created by Chingis Gomboev on 27.12.12.
 //  Copyright (c) 2012 CloudTeam. All rights reserved.
 //
 
@@ -15,12 +15,17 @@
 @synthesize identifier;
 @synthesize name;
 @synthesize token;
-@synthesize devices;
-@synthesize deviceToken;
-@synthesize skype;
+@synthesize birthday;
+@synthesize sex;
+@synthesize age;
 @synthesize phone;
 @synthesize email;
-@synthesize contactEmail;
 @synthesize avatar;
-@synthesize messagesCount;
+@synthesize region;
+@synthesize countryPrefix;
+
+-(NSString*)avatar
+{
+    return [NSString stringWithFormat:@"http://budist.s3.amazonaws.com/avatars/%@/%@.jpg",avatar,IS_RETINA?@"100":@"50"];
+}
 @end

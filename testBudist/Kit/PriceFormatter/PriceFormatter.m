@@ -2,7 +2,7 @@
 //  PriceFormatter.m
 //  iSaler
 //
-//  Created by Paul Semionov on 22.11.12.
+//  Created by Chingis Gomboev on 22.11.12.
 //
 // ₷
 

@@ -2,7 +2,7 @@
 //  ErrorHandler.h
 //  iSeller
 //
-//  Created by Paul Semionov on 13.02.13.
+//  Created by Chingis Gomboev on 13.02.13.
 //  Copyright (c) 2013 CloudTeam. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 #define kErrorObject @"ErrorObject"
 
-@interface ErrorHandler : NSObject <CGAlertViewDelegate>
+@interface ErrorHandler : NSObject <UIAlertViewDelegate>
 
 + (ErrorHandler *)sharedHandler;
 

@@ -2,7 +2,7 @@
 //  ErrorHandler.m
 //  iSeller
 //
-//  Created by Paul Semionov on 13.02.13.
+//  Created by Chingis Gomboev on 13.02.13.
 //  Copyright (c) 2013 CloudTeam. All rights reserved.
 //
 
@@ -41,7 +41,7 @@ static ErrorHandler *instance_;
         case 422:  {
                 errorMsg = [NSString stringWithFormat:@"%@ %@", [[[error.userInfo[kErrorObject] allKeys] lastObject] capitalizedString], [[[error.userInfo[kErrorObject] allValues] lastObject] lastObject]];
             
-                CGAlertView *alert = [[CGAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:errorMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:errorMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 if(alert.message && ![alert.message isEqualToString:@""]) {
                     
                     [alert show];
@@ -60,12 +60,12 @@ static ErrorHandler *instance_;
                 
                 errorMsg = @"Ах ты неавторизован??!!";
                 //блять, короче надо кудато эту строку присунуть))
-                [[NSNotificationCenter defaultCenter] postNotificationName:CHINAS_NOTIFICATION_NEED_TO_PRESENT_AUTH_CONTROLLER object:self];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"CHINAS_NOTIFICATION_NEED_TO_PRESENT_AUTH_CONTROLLER" object:self];
         }
             break;
         case -1021: {
             
-            CGAlertView *alert = [[CGAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             if(alert.message && ![alert.message isEqualToString:@""]) {
                 
                 [alert show];
@@ -84,7 +84,7 @@ static ErrorHandler *instance_;
             break;
         case -10001:
         {
-            [[[CGAlertView alloc] initWithTitle:error.domain message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:error.domain message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
             break;
         default: {

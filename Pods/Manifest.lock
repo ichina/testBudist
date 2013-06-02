@@ -1,0 +1,19 @@
+PODS:
+  - AFNetworking (1.2.1)
+  - Facebook-iOS-SDK (3.5.1)
+  - JSONKit (1.5pre)
+  - MBProgressHUD (0.6)
+
+DEPENDENCIES:
+  - AFNetworking
+  - Facebook-iOS-SDK
+  - JSONKit
+  - MBProgressHUD
+
+SPEC CHECKSUMS:
+  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
+  Facebook-iOS-SDK: 0dbd897e842cefeb012ec2eb8eba659ba6b96b12
+  JSONKit: 409734ab3407fce90ef7eaa95d7168f38d9a6601
+  MBProgressHUD: 9b55a90566fb5d07df0602f6fd9fa04510ad5d52
+
+COCOAPODS: 0.20.2

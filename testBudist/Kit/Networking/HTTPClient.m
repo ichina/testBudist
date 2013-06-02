@@ -3,7 +3,7 @@
 //  HTTPClient.m
 //  iSeller
 //
-//  Created by Paul Semionov on 10.01.13.
+//  Created by Paul Semenov on 10.01.13.
 //  Copyright (c) 2013 CloudTeam. All rights reserved.
 //
 
@@ -144,7 +144,7 @@ static int failureQueueObservanceContext;
                 
                 if(self.isNeedAlert) {
                 
-                    [[[CGAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Internet connection failed", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Internet connection failed", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
                     
                     self.isNeedAlert = NO;
                     
@@ -166,7 +166,15 @@ static int failureQueueObservanceContext;
         //[self.operationQueue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:&operationQueueObservanceContext];
         
     }
+    [self setDefaultHeader:@"X-Platform" value:@"ios"];
+    [self setDefaultHeader:@"Accept-Language" value:@"ru, en, fr, de, ja, nl, it, es, pt, pt-PT, da, fi, nb, sv, ko, zh-Hans, zh-Hant, pl, tr, uk, ar, hr, cs, el, he, ro, sk, th, id, ms, en-GB, ca, hu, vi, en-us;q=0.8"];
+    [self setDefaultHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
+    [self setDefaultHeader:@"X-Client-Version" value:@"2.8.2.10"];
+    [self setDefaultHeader:@"Api-Version" value:@"3.0"];
+
     
+    [self setDefaultHeader:@"Accept" value:@"application/json"];
+
     return self;
 }
 

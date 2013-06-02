@@ -2,7 +2,7 @@
 //  Model.h
 //  iSeller
 //
-//  Created by Paul Semionov on 27.12.12.
+//  Created by Chingis Gomboev on 27.12.12.
 //  Copyright (c) 2012 CloudTeam. All rights reserved.
 //
 //
@@ -31,16 +31,7 @@ static NSString *const RequestKeyParameters = @"RKParameters";
 
 @protocol ModelDelegate;
 
-@interface Model : NSObject {
-    
-    // Delegate
-    
-    id <ModelDelegate> delegate;
-}
-
-// Delegate
-
-@property (nonatomic, retain) id <ModelDelegate> delegate;
+@interface Model : NSObject 
 
 // Blocks
 
@@ -80,13 +71,5 @@ typedef void(^FailureBlock)(id object, NSError* error);
 + (void)operationError:(HTTPRequestOperation *)operation error:(NSError *)error;
 
 // Delegate methods
-
-@end
-
-@protocol ModelDelegate <NSObject>
-
-@optional
-- (void)successfulWithModel:(Model *)model;
-- (void)failedWithError:(NSError *)error andModel:(Model *)model;
 
 @end
